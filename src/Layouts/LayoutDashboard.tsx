@@ -1,5 +1,7 @@
 import Dashboard from "@/components/custom/Dashboard"
 
+import FormAnalytics from "@/components/custom/FormAnalytics"
+
 
 const LayoutDashboard = () => {
   return (
@@ -15,7 +17,7 @@ const LayoutDashboard = () => {
         </div>
       </header>
  <Dashboard />
-   
+<FormAnalytics />
   
     </div>
    
