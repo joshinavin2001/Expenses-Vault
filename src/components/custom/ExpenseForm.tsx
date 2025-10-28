@@ -5,16 +5,28 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import * as React from "react";
+import { ChevronDownIcon } from "lucide-react";
+
+import { Calendar } from "@/components/ui/calendar";
+import { Label } from "@/components/ui/label";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import CalendarExp from "./CalenderExp";
+
 import { useState, type ChangeEvent } from "react";
+import { useDispatch } from "react-redux";
+import { addTasks } from "@/features/expensesSlice";
 
 const ExpenseForm = () => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
-
+  const dispatch = useDispatch();
   const titleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
@@ -24,15 +36,25 @@ const ExpenseForm = () => {
   };
 
   const submitHandle = () => {
-    console.log("Title:", title);
-    console.log("Amount:", amount);
-    console.log("Category:", category);
-
+    if (
+      title.trim() === "" ||
+      amount.trim() === "" ||
+      category === "" ||
+      date === ""
+    ) {
+      alert("Please Enter Valid Details...?");
+      return;
+    }
     // Reset form fields
+    dispatch(addTasks({ title, amount, category, date }));
+
     setTitle("");
     setAmount("");
     setCategory("");
+    setDate("");
   };
+  const [open, setOpen] = React.useState(false);
+  const [date, setDate] = useState<string>("");
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg flex justify-center sm:justify-start">
@@ -93,8 +115,40 @@ const ExpenseForm = () => {
           </div>
 
           {/* Date Picker */}
-          <CalendarExp />
-
+          <div className="flex flex-col gap-3 w-full max-w-md">
+            <Label htmlFor="date" className="px-1">
+              Date
+            </Label>
+            <Popover open={open} onOpenChange={setOpen}>
+              <PopoverTrigger>
+                <Button
+                  type="button"
+                  variant="outline"
+                  id="date"
+                  className="w-full justify-between font-normal"
+                >
+                  {date ? date : "Select date"}
+                  <ChevronDownIcon />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent
+                className="w-full overflow-hidden p-0"
+                align="start"
+              >
+                <Calendar
+                  mode="single"
+                  selected={date ? new Date(date) : undefined}
+                  onSelect={(d: Date | undefined) => {
+                    if (d) {
+                      const formatted = d.toISOString().split("T")[0];
+                      setDate(formatted); 
+                    }
+                    setOpen(false);
+                  }}
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
           {/* Submit Button */}
           <div className="pt-2">
             <Button

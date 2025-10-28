@@ -4,7 +4,7 @@ const ExpenseSummary = () => {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 mx-5 my-5">
       {/* div1 */}
-      <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg flex gap-2 ">
+      <div className="  p-6 rounded-lg  shadow-md hover:shadow-lg flex gap-2 ">
         <div className="bg-[#bb830a] rounded-full p-3">
           <Wallet className="text-white" />
         </div>
