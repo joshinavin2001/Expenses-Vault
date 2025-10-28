@@ -1,18 +1,18 @@
-import * as React from "react"
-import { ChevronDownIcon } from "lucide-react"
+import * as React from "react";
+import { ChevronDownIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Label } from "@/components/ui/label";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 
 const CalendarExp = () => {
-  const [open, setOpen] = React.useState(false)
-  const [date, setDate] = React.useState<Date | undefined>(undefined)
+  const [open, setOpen] = React.useState(false);
+  const [date, setDate] = React.useState<Date | undefined>(undefined);
 
   return (
     <div className="flex flex-col gap-3 w-full max-w-md">
@@ -20,8 +20,9 @@ const CalendarExp = () => {
         Date
       </Label>
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
+        <PopoverTrigger>
           <Button
+            type="button"
             variant="outline"
             id="date"
             className="w-full justify-between font-normal"
@@ -34,16 +35,15 @@ const CalendarExp = () => {
           <Calendar
             mode="single"
             selected={date}
-            captionLayout="dropdown"
-            onSelect={(date) => {
-              setDate(date)
-              setOpen(false)
+            onSelect={(d) => {
+              setDate(d);
+              setOpen(false);
             }}
           />
         </PopoverContent>
       </Popover>
     </div>
-  )
-}
+  );
+};
 
-export default CalendarExp
+export default CalendarExp;
