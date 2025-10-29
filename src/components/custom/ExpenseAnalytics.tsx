@@ -39,8 +39,8 @@ const ExpenseAnalytics = () => {
         </div>
 
         {/* Chart Container */}
-        {/* ⬇️ Horizontal scroll only — vertical scroll disabled */}
-        <div className="w-full max-w-[600px] mx-auto overflow-x-auto overflow-y-hidden">
+
+        <div className="w-full max-w-[600px] mx-auto overflow-x-auto ">
           <div className="min-w-[320px] sm:min-w-[400px] md:min-w-[500px]">
             {activeCharts === "pie" && (
               <div className="w-full h-[300px] sm:h-[350px]">

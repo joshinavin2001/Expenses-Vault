@@ -1,4 +1,8 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import type { RootState } from "@/redux/store";
+
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
 import {
   BarChart,
   Bar,
@@ -10,14 +14,24 @@ import {
   Legend,
 } from "recharts";
 
-const data = [
-  { name: "Food", amount: 1200 },
-  { name: "Travel", amount: 800 },
-  { name: "Shopping", amount: 600 },
-  { name: "Bills", amount: 400 },
-  { name: "Others", amount: 300 },
-];
+// const data = [
+//   { name: "Food", amount: 1200 },
+//   { name: "Travel", amount: 800 },
+//   { name: "Shopping", amount: 600 },
+//   { name: "Bills", amount: 400 },
+//   { name: "Others", amount: 300 },
+// ];
 const ExpenseBarChart = () => {
+  const expenseData = useSelector((state: RootState) => state.expenses.tasks);
+  const barChart = useMemo(() => {
+    const totals: Record<string, number> = {};
+    expenseData.forEach((e) => {
+      const catgry = e.category || "Others";
+      const amt = Number(e.amount) || 0;
+      totals[catgry] = (totals[catgry] || 0) + amt;
+    });
+    return Object.entries(totals).map(([name, amount]) => ({ name, amount }));
+  }, [expenseData]);
   return (
     <div>
       <Card className="w-full max-w-2xl mx-auto shadow-md">
@@ -28,7 +42,7 @@ const ExpenseBarChart = () => {
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
-                data={data}
+                data={barChart}
                 margin={{ top: 10, right: 30, left: 0, bottom: 5 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />

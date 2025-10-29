@@ -69,7 +69,7 @@ const ExpHistory = () => {
         ) : (
           filteredHistory.map((t) => (
             <div
-              className="flex px-4 py-2 min-w-[600px] font-medium text-gray-600 border-b border-gray-100"
+              className="flex px-4 py-2 min-w-[600px]  font-medium text-gray-600 border-b border-gray-100"
               key={t.id}
             >
               <h2 className="w-[25%]">{t.date}</h2>
