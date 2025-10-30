@@ -6,9 +6,9 @@ const LayoutDashboard = () => {
         <header className="shadow-sm">
           <div className="flex justify-start md:justify-between">
             <div className="flex items-center">
-              <img className="w-18 mt-2 h-12 pl-4" src={logo} alt="" />
-              <h1 className=" text-xl sm:text-2xl mt-4 font-bold text-[#bb830a]">
-                XpensesVault
+              <img className="w-18 mt-2  h-13 " src={logo} alt="" />
+              <h1 className=" text-md sm:text-2xl mt-5 font-bold text-[#bb830a]">
+                <span className="text-3xl">X</span>pensesVault
               </h1>
             </div>
             <div className="flex items-center mr-5">

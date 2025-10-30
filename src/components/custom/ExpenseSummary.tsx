@@ -1,6 +1,12 @@
+import type { RootState } from "@/redux/store";
 import { TrendingDown, TrendingUp, Wallet } from "lucide-react";
+import { useSelector } from "react-redux";
 
 const ExpenseSummary = () => {
+  const totals = useSelector((state: RootState) => state.expenses.total);
+  const highestcat = useSelector(
+    (state: RootState) => state.expenses.highestCategory
+  );
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 mx-5 my-5">
       {/* div1 */}
@@ -10,7 +16,7 @@ const ExpenseSummary = () => {
         </div>
         <div>
           <h1 className="text-gray-400">Total Expenses</h1>
-          <p className="text-[#bb830a] font-bold">0.00</p>
+          <p className="text-[#bb830a] font-bold">{totals}</p>
         </div>
       </div>
       {/* div2 */}
@@ -20,7 +26,14 @@ const ExpenseSummary = () => {
         </div>
         <div>
           <h1 className="text-gray-400">Highest Category</h1>
-          <p className="text-[#bb830a] font-bold">None</p>
+          <div className="flex items-center gap-1 capitalize">
+            <p className="text-[#bb830a] font-bold">
+              {highestcat ? highestcat.name : "—"}
+            </p>
+            <p className="text-sm mt-1 text-gray-500">
+              {highestcat ? `(₹${highestcat.value})` : ""}
+            </p>
+          </div>
         </div>
       </div>
       {/* div3 */}

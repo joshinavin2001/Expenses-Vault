@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import {
   PieChart,
@@ -22,18 +22,10 @@ const defaultData = [
 const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff7f7f", "#a78bfa"];
 
 const ExpensePieChart = () => {
-  const expenseData = useSelector((state: RootState) => state.expenses.tasks);
+  const chartsData = useSelector(
+    (state: RootState) => state.expenses.chartData
+  );
   const [isMobile, setIsMobile] = useState(false);
-
-  const chartData = useMemo(() => {
-    const totals: Record<string, number> = {};
-    expenseData.forEach((e) => {
-      const catgry = e.category || "Others";
-      const amt = Number(e.amount) || 0;
-      totals[catgry] = (totals[catgry] || 0) + amt;
-    });
-    return Object.entries(totals).map(([name, value]) => ({ name, value }));
-  }, [expenseData]);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 640);
@@ -53,8 +45,8 @@ const ExpensePieChart = () => {
       index = 0,
     } = props;
 
-    const isRealData = chartData.length > 0;
-    const activeData = isRealData ? chartData : defaultData;
+    const isRealData = chartsData.length > 0;
+    const activeData = isRealData ? chartsData : defaultData;
     const { name, value } = activeData[index];
 
     if (percent < 0.05) return null; // skip small slices
@@ -106,7 +98,7 @@ const ExpensePieChart = () => {
           <ResponsiveContainer width="100%" height="100%">
             <PieChart margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
               <Pie
-                data={chartData.length > 0 ? chartData : defaultData}
+                data={chartsData.length > 0 ? chartsData : defaultData}
                 cx="50%"
                 cy="50%"
                 outerRadius={isMobile ? 55 : 85}
@@ -116,7 +108,7 @@ const ExpensePieChart = () => {
                 label={renderCustomLabel}
                 labelLine={false}
               >
-                {(chartData.length > 0 ? chartData : defaultData).map(
+                {(chartsData.length > 0 ? chartsData : defaultData).map(
                   (_, index) => (
                     <Cell
                       key={`cell-${index}`}
