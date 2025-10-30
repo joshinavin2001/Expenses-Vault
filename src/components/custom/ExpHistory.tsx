@@ -5,14 +5,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { deleteTasks } from "@/features/expensesSlice";
 import type { RootState } from "@/redux/store";
+import { Delete } from "lucide-react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ExpHistory = () => {
   const [category1, setCategory1] = useState("");
   const expHistory = useSelector((state: RootState) => state.expenses.tasks);
-
+  const dispatch = useDispatch();
   // Filtered Data
   const filteredHistory = category1
     ? expHistory.filter((item) => item.category === category1)
@@ -52,10 +54,11 @@ const ExpHistory = () => {
       <div className="w-full overflow-x-auto max-h-[400px] overflow-y-auto scroll-smooth scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
         {/* Header */}
         <div className="flex px-4 min-w-[600px] text-gray-500 font-semibold">
-          <h2 className="w-[25%]">Time</h2>
-          <h2 className="w-[25%]">Description</h2>
-          <h2 className="w-[25%] text-center">Category</h2>
-          <h2 className="w-[25%] text-end">Amount</h2>
+          <h2 className="w-[20%]">Time</h2>
+          <h2 className="w-[20%]">Description</h2>
+          <h2 className="w-[20%] text-center">Category</h2>
+          <h2 className="w-[20%] text-end">Amount</h2>
+          <h2 className="w-[20%] text-end">Delete</h2>
         </div>
         <hr className="my-2" />
 
@@ -72,12 +75,18 @@ const ExpHistory = () => {
               className="flex px-4 py-2 min-w-[600px]  font-medium text-gray-600 border-b border-gray-100"
               key={t.id}
             >
-              <h2 className="w-[25%]">{t.date}</h2>
-              <h2 className="w-[25%] truncate">{t.title}</h2>
-              <h2 className="w-[25%] text-center capitalize">{t.category}</h2>
-              <h2 className="w-[25%] text-end text-[#bb830a] font-semibold">
+              <h2 className="w-[20%]">{t.date}</h2>
+              <h2 className="w-[20%] capitalize truncate">{t.title}</h2>
+              <h2 className="w-[20%] text-center capitalize">{t.category}</h2>
+              <h2 className="w-[20%] text-end text-[#bb830a] font-semibold">
                 ₹{t.amount}
               </h2>
+              <div className=" w-[20%] flex justify-end">
+                <Delete
+                  onClick={() => dispatch(deleteTasks(t.id))}
+                  className=" cursor-pointer active:scale-95 text-red-500"
+                />
+              </div>
             </div>
           ))
         )}

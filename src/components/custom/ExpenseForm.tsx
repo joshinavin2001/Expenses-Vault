@@ -140,8 +140,9 @@ const ExpenseForm = () => {
                   selected={date ? new Date(date) : undefined}
                   onSelect={(d: Date | undefined) => {
                     if (d) {
-                      const formatted = d.toISOString().split("T")[0];
-                      setDate(formatted); 
+                      // ✅ Fix: Format date locally instead of UTC
+                      const formatted = d.toLocaleDateString("en-CA"); // gives yyyy-mm-dd
+                      setDate(formatted);
                     }
                     setOpen(false);
                   }}
@@ -149,6 +150,7 @@ const ExpenseForm = () => {
               </PopoverContent>
             </Popover>
           </div>
+
           {/* Submit Button */}
           <div className="pt-2">
             <Button

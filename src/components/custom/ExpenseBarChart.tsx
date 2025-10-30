@@ -1,6 +1,12 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import type { RootState } from "@/redux/store";
-
+const defaultData = [
+  { name: "Food", amount: 1 },
+  { name: "Travel", amount: 1 },
+  { name: "Shopping", amount: 1 },
+  { name: "Bills", amount: 1 },
+  { name: "Others", amount: 1 },
+];
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -13,14 +19,6 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-
-// const data = [
-//   { name: "Food", amount: 1200 },
-//   { name: "Travel", amount: 800 },
-//   { name: "Shopping", amount: 600 },
-//   { name: "Bills", amount: 400 },
-//   { name: "Others", amount: 300 },
-// ];
 const ExpenseBarChart = () => {
   const expenseData = useSelector((state: RootState) => state.expenses.tasks);
   const barChart = useMemo(() => {
@@ -42,7 +40,7 @@ const ExpenseBarChart = () => {
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
-                data={barChart}
+                data={barChart.length > 0 ? barChart : defaultData}
                 margin={{ top: 10, right: 30, left: 0, bottom: 5 }}
               >
                 <CartesianGrid strokeDasharray="3 3" />

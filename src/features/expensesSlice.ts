@@ -21,7 +21,10 @@ const expensesSlice = createSlice({
       };
       state.tasks.push(newTasks);
     },
+    deleteTasks: (state, action) => {
+      state.tasks = state.tasks.filter((t) => t.id !== action.payload);
+    },
   },
 });
-export const { addTasks } = expensesSlice.actions;
+export const { addTasks, deleteTasks } = expensesSlice.actions;
 export default expensesSlice.reducer;
