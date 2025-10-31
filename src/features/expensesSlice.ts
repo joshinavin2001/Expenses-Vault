@@ -14,6 +14,7 @@ const expensesSlice = createSlice({
     total: 0,
     chartData: [] as { name: string; value: number }[],
     highestCategory: null as { name: string; value: number } | null,
+    count: 0,
   },
 
   reducers: {
@@ -52,6 +53,9 @@ const expensesSlice = createSlice({
       } else {
         state.highestCategory = null;
       }
+      if (action.payload) {
+        state.count++;
+      }
     },
     deleteTasks: (state, action) => {
       state.tasks = state.tasks.filter((t) => t.id !== action.payload);
@@ -79,6 +83,9 @@ const expensesSlice = createSlice({
         state.highestCategory = highest; // ✅ assign array
       } else {
         state.highestCategory = null;
+      }
+      if (action.payload) {
+        state.count--;
       }
     },
   },

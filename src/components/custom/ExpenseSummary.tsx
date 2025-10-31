@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 const ExpenseSummary = () => {
   const totals = useSelector((state: RootState) => state.expenses.total);
+  const counts = useSelector((state: RootState) => state.expenses.count);
   const highestcat = useSelector(
     (state: RootState) => state.expenses.highestCategory
   );
@@ -43,7 +44,7 @@ const ExpenseSummary = () => {
         </div>
         <div>
           <h1 className="text-gray-400">Total Entries</h1>
-          <p className="text-[#bb830a] font-bold">0</p>
+          <p className="text-[#bb830a] font-bold"> {counts} </p>
         </div>
       </div>
     </div>

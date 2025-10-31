@@ -16,10 +16,10 @@ const ExpHistory = () => {
   const expHistory = useSelector((state: RootState) => state.expenses.tasks);
   const dispatch = useDispatch();
   // Filtered Data
-  const filteredHistory = category1
+  let filteredHistory = category1
     ? expHistory.filter((item) => item.category === category1)
     : expHistory;
-
+  filteredHistory = category1 === "All" ? expHistory : filteredHistory;
   return (
     <>
       {/* Header + Filter */}
@@ -40,11 +40,12 @@ const ExpHistory = () => {
               <SelectValue placeholder="Select category" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="food">Food</SelectItem>
-              <SelectItem value="travel">Travel</SelectItem>
-              <SelectItem value="bills">Bills</SelectItem>
-              <SelectItem value="shopping">Shopping</SelectItem>
-              <SelectItem value="others">Others</SelectItem>
+              <SelectItem value="All">All</SelectItem>
+              <SelectItem value="Food">Food</SelectItem>
+              <SelectItem value="Travel">Travel</SelectItem>
+              <SelectItem value="Bills">Bills</SelectItem>
+              <SelectItem value="Shopping">Shopping</SelectItem>
+              <SelectItem value="Others">Others</SelectItem>
             </SelectContent>
           </Select>
         </div>

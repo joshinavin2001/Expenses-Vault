@@ -105,11 +105,11 @@ const ExpenseForm = () => {
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="food">Food</SelectItem>
-                <SelectItem value="travel">Travel</SelectItem>
-                <SelectItem value="bills">Bills</SelectItem>
-                <SelectItem value="shopping">Shopping</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
+                <SelectItem value="Food">Food</SelectItem>
+                <SelectItem value="Travel">Travel</SelectItem>
+                <SelectItem value="Bills">Bills</SelectItem>
+                <SelectItem value="Shopping">Shopping</SelectItem>
+                <SelectItem value="Others">Other</SelectItem>
               </SelectContent>
             </Select>
           </div>
