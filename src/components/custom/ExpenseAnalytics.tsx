@@ -9,7 +9,7 @@ const ExpenseAnalytics = () => {
   return (
     <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md hover:shadow-lg">
       <div className="text-center">
-        <h2 className="text-[#bb830a] text-xl sm:text-2xl font-bold mb-3">
+        <h2 className=" text-lime-600 text-xl sm:text-2xl font-bold mb-3">
           Expense Analytics
         </h2>
 
@@ -19,7 +19,7 @@ const ExpenseAnalytics = () => {
             onClick={() => setActiveCharts("pie")}
             className={`flex items-center gap-2 ${
               activeCharts === "pie"
-                ? "bg-[#bb830a] text-white"
+                ? "bg-lime-600 text-white"
                 : "bg-gray-200 text-gray-700"
             } px-3 py-2 rounded-md active:scale-95 transition`}
           >
@@ -30,7 +30,7 @@ const ExpenseAnalytics = () => {
             onClick={() => setActiveCharts("bar")}
             className={`flex items-center gap-2 ${
               activeCharts === "bar"
-                ? "bg-[#bb830a] text-white"
+                ? "bg-lime-600 text-white"
                 : "bg-gray-200 text-gray-700"
             } px-3 py-2 rounded-md active:scale-95 transition`}
           >

@@ -60,7 +60,7 @@ const ExpenseForm = () => {
     <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg flex justify-center sm:justify-start">
       <div className="w-full max-w-md">
         {/* Heading */}
-        <h2 className="text-2xl font-bold text-[#bb830a] text-center sm:text-left mb-4">
+        <h2 className="text-2xl font-bold text-lime-600 text-center sm:text-left mb-4">
           Add New Expense
         </h2>
 
@@ -156,7 +156,7 @@ const ExpenseForm = () => {
             <Button
               type="button"
               onClick={submitHandle}
-              className="w-full bg-[#bb830a] hover:bg-[#c7911c] text-white"
+              className="w-full bg-lime-600 active:scale-95 hover:shadow-lg hover:bg-lime-500 cursor-pointer text-white"
             >
               Add Expense
             </Button>

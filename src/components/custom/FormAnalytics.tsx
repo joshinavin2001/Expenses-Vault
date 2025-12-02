@@ -1,6 +1,5 @@
-import ExpenseAnalytics from "./ExpenseAnalytics"
-import ExpenseForm from "./ExpenseForm"
-
+import ExpenseAnalytics from "./ExpenseAnalytics";
+import ExpenseForm from "./ExpenseForm";
 
 const FormAnalytics = () => {
   return (
@@ -8,7 +7,7 @@ const FormAnalytics = () => {
       <ExpenseAnalytics />
       <ExpenseForm />
     </div>
-  )
-}
+  );
+};
 
-export default FormAnalytics
+export default FormAnalytics;

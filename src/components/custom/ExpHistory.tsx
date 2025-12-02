@@ -24,7 +24,7 @@ const ExpHistory = () => {
     <>
       {/* Header + Filter */}
       <div className="flex flex-col sm:flex-row justify-between items-center shadow-sm m-4 gap-4">
-        <h2 className="text-xl sm:text-3xl text-[#bb830a] font-bold">
+        <h2 className="text-xl sm:text-3xl text-lime-600 font-bold">
           Expenses History
         </h2>
 
